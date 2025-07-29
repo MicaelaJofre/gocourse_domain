@@ -11,7 +11,7 @@ type Enrollment struct {
 	ID        string     `json:"id" gorm:"type:char(36);not null;primary_key;unique_index"`
 	UserID    string     `json:"user_id,omitempty" gorm:"type:char(36)"`
 	User      *User      `json:"user,omitempty"`
-	CourseID  string     `json:"course_id,omitempty" gorm:"type:char(36): not null"`
+	CourseID  string     `json:"course_id,omitempty" gorm:"type:char(36);not null"` 
 	Course    *Course    `json:"course,omitempty"`
 	CreatedAt *time.Time `json:"-"`
 	UpdatedAt *time.Time `json:"-"`
