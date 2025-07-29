@@ -13,10 +13,19 @@ type Enrollment struct {
 	User      *User        `json:"user,omitempty" gorm:"-"`
 	CourseID  string       `json:"course_id" gorm:"type:char(36);not null"`
 	Course    *Course      `json:"course,omitempty" gorm:"-"`
-	Status    string `json:"status" gorm:"type:char(2)"`
+	Status    EnrollStatus `json:"status" gorm:"type:char(2)"`
 	CreatedAt *time.Time   `json:"-"`
 	UpdatedAt *time.Time   `json:"-"`
 }
+
+type EnrollStatus string
+
+const (
+	Pending  EnrollStatus = "P"
+	Active   EnrollStatus = "A"
+	Studying EnrollStatus = "S"
+	Inactive EnrollStatus = "I"
+)
 
 func (e *Enrollment) BeforeCreate(tx *gorm.DB) (err error) {
 	if e.ID == "" {
